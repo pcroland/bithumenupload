@@ -1,4 +1,3 @@
-![logo](https://i.kek.sh/coQmSWoCfSX.png)
 # bhup
 ### Feltöltő script BitHUmenre eredeti release-ekhez film és sorozat kategóriában.
 ## Leírás
@@ -10,8 +9,7 @@
 * `mktorrent`
 * `mediainfo` (ha a feltölteni kívánt mappában nincs NFO fájl, a script létrehoz egyet)
 ## Telepítés
-* `install -D -m 755 <(curl -fsSL git.io/JJ94i) ~/.local/bin/bhup`
-
+* `install -D -m 755 <(curl -fsSL git.io/JLpSv) ~/.local/bin/bhup`\
 (Ha a `~/.local/bin` nincs benne PATH-ban, akkor írjuk be a `.bashrc`/`.zshrc` fájlunkba hogy: `PATH="$HOME/.local/bin:$PATH"`.)
 * `hash -r && ncup -d && ncup -e`
 * A `cookies.txt` fájlt a `~/.bhup` mappába másoljuk.
