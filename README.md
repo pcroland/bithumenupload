@@ -11,9 +11,8 @@
 ## Telepítés
 * `install -D -m 755 <(curl -fsSL git.io/JLpSv) ~/.local/bin/bhup`\
 (Ha a `~/.local/bin` nincs benne PATH-ban, akkor írjuk be a `.bashrc`/`.zshrc` fájlunkba hogy: `PATH="$HOME/.local/bin:$PATH"`.)
-* `hash -r && ncup -d && ncup -e`
+* `hash -r`
 * A `cookies.txt` fájlt a `~/.bhup` mappába másoljuk.
-* `ncup -c` paranccsal tudjuk szerkeszteni a config fájlunkat.
 ## Használat
 ```sh
 bhup [input(s)]
