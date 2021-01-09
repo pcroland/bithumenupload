@@ -90,7 +90,10 @@ for x in "$@"; do
     fi
   fi
 
-  printf "Uploading. "
+  printf 'Patching torrent file\n'
+  chtor --reannounce=http://bithumen.be:11337/announce -s info.source=bH "$torrent_file"
+
+  printf 'Uploading in category \e[93m%s\e[0m. ' "$type"
   description=''
   # shellcheck disable=SC2128
   torrent_link=$(curl -Ls -o /dev/null -w "%{url_effective}" "https://bithumen.be/upload.php" \
