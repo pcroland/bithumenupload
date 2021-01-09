@@ -6,7 +6,7 @@ cookies=~/.bhup/cookies.txt
 script=~/.local/bin/bhup
 
 if [[ -f "$cookies" ]]; then
-  if [[ $(curl -s -I -b "$cookies" 'https://ncore.cc/' -o /dev/null -w '%{http_code}') == 200 ]]; then
+  if [[ $(curl -s -I -b "$cookies" 'https://bithumen.be/' -o /dev/null -w '%{http_code}') == 200 ]]; then
     printf '\e[92m%s\e[0m\n' "Cookies OK."
   else
     printf '\e[91m%s\e[0m\n' "ERROR: cookies.txt does not work."
@@ -22,10 +22,6 @@ for x in "$@"; do
   nfo_file="${nfo_files[0]}"
   printf '\e[92m%s\e[0m\n' "$torrent_name"
 
-  if [[ ! -f "$file" ]]; then
-    printf '\e[91m%s\e[0m\n' "ERROR: No video files were found."
-    exit 1
-  fi
   if (( ${#nfo_files[@]} > 1 )); then
     printf '\e[91m%s\e[0m\n' "ERROR: Multiple NFO files were found." >&2
     exit 1
@@ -83,7 +79,7 @@ for x in "$@"; do
       elif (( resolution >= 1080 )); then
         type='39' # film 1080p
       elif (( resolution >= 720 )); then
-        type='5' # film 720p
+        type='5'  # film 720p
       else
         type='19' # film sd
       fi
@@ -91,12 +87,12 @@ for x in "$@"; do
   fi
 
   printf 'Patching torrent file\n'
-  chtor --reannounce=http://bithumen.be:11337/announce -s info.source=bH "$torrent_file"
+  chtor --reannounce=http://bithumen.be:11337/announce -s info.source=bH "$torrent_file" > /dev/null
 
   printf 'Uploading in category \e[93m%s\e[0m. ' "$type"
   description=''
   # shellcheck disable=SC2128
-  torrent_link=$(curl -Ls -o /dev/null -w "%{url_effective}" "https://bithumen.be/upload.php" \
+  torrent_link=$(curl -Ls -o /dev/null -w "%{url_effective}" "https://bithumen.be/takeupload.php" \
   -b "$cookies" \
   -F MAX_FILE_SIZE=20971520 \
   -F type="$type" \
@@ -104,7 +100,7 @@ for x in "$@"; do
   -F file=@"$torrent_file" \
   -F nfo=@"$nfo_file" \
   -F descr="$description")
-  torrent_id="${torrent_link//[!0-9]/}"
-  printf 'Downloading: \e[93m%s\e[0m\n' "$torrent_link"
-  curl "http://bithumen.be/download.php/${torrent_id}/a.torrent" -b "$cookies" -s -o "${torrent_name}_bh.torrent"
+#  torrent_id="${torrent_link//[!0-9]/}"
+#  printf 'Downloading: \e[93m%s\e[0m\n' "$torrent_link"
+#  curl "http://bithumen.be/download.php/${torrent_id}/a.torrent" -b "$cookies" -s -o "${torrent_name}_bh.torrent"
 done
