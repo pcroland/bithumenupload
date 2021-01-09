@@ -3,7 +3,7 @@
 ## Leírás
 * A script automatikusan készít torrent és NFO fájlt a megadott inputokhoz, ha valamelyik még nincs.
 * A feltöltési kategóriát mappanévből állapítja meg.
-* A script az `~/.ncup/` mappában tárolja a cookies fájlt.
+* A script a `~/.bhup/` mappában tárolja a cookies fájlt.
 ## Szükséges programok
 * `curl`
 * `mktorrent`
