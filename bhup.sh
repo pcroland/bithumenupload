@@ -87,7 +87,7 @@ for x in "$@"; do
   fi
 
   printf 'Patching torrent file\n'
-  chtor --reannounce=http://bithumen.be:11337/announce -s info.source=bH "$torrent_file" > /dev/null
+  chtor --reannounce-all=http://bithumen.be:11337/announce -s info.source=bH "$torrent_file" > /dev/null
 
   printf 'Uploading in category \e[93m%s\e[0m. ' "$type"
   description=''
